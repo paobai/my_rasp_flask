@@ -22,6 +22,7 @@ from models.data import *
 from flask_login import login_required
 import os
 from setting import CURRENT_SETTINGS
+from test_use_c import generate_now_frequency, generate_wav
 
 bp = Blueprint("set", __name__)
 settings_path = CURRENT_SETTINGS.settings_path
@@ -50,6 +51,9 @@ def update_settings(new_settings):
 def set_grade_frequency_form():
     new_settings = request.values.dicts[1].to_dict()
     update_settings(new_settings)
+    wendu = Wendu.query.order_by(Wendu.save_time.desc()).first()
+    now_frequency = generate_now_frequency(int(wendu.data))
+    generate_wav(now_frequency)
     return make_response('保存成功！'), 200
 
 

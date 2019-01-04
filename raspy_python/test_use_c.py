@@ -8,7 +8,7 @@ from pyaudio import PyAudio
 import array
 import math
 
-def update_settings_now_frequency():
+def get_wendu_shidu():
     c_path = os.path.join(CURRENT_SETTINGS.root_path, "wenshidu_2")
 
     result = os.popen(c_path)
@@ -23,14 +23,16 @@ def update_settings_now_frequency():
     print(wendu)
     print(shidu)
     update_state(wendu,shidu)
-    
+    result.close()
+    return wendu, shidu
+
+def generate_now_frequency(wendu):
     i = int(wendu/5) + 2
     grade = 'grade' + str(i)
     print(grade)
     settings = generate_settings()
     now_frequency = settings[grade]
     update_settings(dict(now_frequency = now_frequency))
-    result.close()
     return now_frequency
 
 def update_state(wendu, shidu):
@@ -61,5 +63,6 @@ def generate_wav(frequency):
     wf.setframerate(16000)
     wf.writeframes(b)
     wf.close()
-now_frequency = update_settings_now_frequency()
+wendu,shidu = get_wendu_shidu()
+now_frequency = generate_now_frequency(wendu)
 generate_wav(now_frequency)
