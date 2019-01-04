@@ -1,7 +1,6 @@
 import os
 import requests
-from setting import CURRENT_SETTINGS
-from creatapp import generate_settings, update_settings
+from setting import CURRENT_SETTINGS, generate_settings, update_settings
 import wave
 import pyaudio
 from pyaudio import PyAudio
