@@ -1,7 +1,7 @@
 from flask import Flask
 import api
 from flask_login import login_required
-from setting import CURRENT_SETTINGS, DefaultSettings, generate_settings, update_settings
+from setting import CURRENT_SETTINGS, DefaultSettings
 from extensions import session, login_manager, db
 from flask import render_template
 from flask import send_from_directory

@@ -22,8 +22,8 @@ import pyaudio
 import wave
 import os
 import array
-from settings import generate_settings, update_settings
-
+from setting import CURRENT_SETTINGS,generate_settings, update_settings
+music_path = os.path.join(CURRENT_SETTINGS.root_path, "music_frequency.wav")
 pygame.mixer.init(frequency=16000,  channels=1)
 while True:
     #com_audio_size = "sudo amixer -M set PCM " + str(settings['audio_size']) + "%" 
@@ -32,7 +32,7 @@ while True:
     for x in range(3):
         print(x)
         #pygame.mixer.music.stop()
-        pygame.mixer.music.load("music_frequency.wav")
+        pygame.mixer.music.load(music_path)
         pygame.mixer.music.play()
         pygame.time.wait(4700)
         

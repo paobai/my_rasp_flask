@@ -62,6 +62,7 @@ def generate_wav(frequency):
     wf.setframerate(16000)
     wf.writeframes(b)
     wf.close()
-wendu,shidu = get_wendu_shidu()
-now_frequency = generate_now_frequency(wendu)
-generate_wav(now_frequency)
+if __name__ =='__main__':
+    wendu,shidu = get_wendu_shidu()
+    now_frequency = generate_now_frequency(wendu)
+    generate_wav(now_frequency)
