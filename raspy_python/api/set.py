@@ -57,4 +57,6 @@ def set_grade_frequency_form():
 def set_other_parameters():
     new_settings = request.values.dicts[1].to_dict()
     update_settings(new_settings)
+    com_audio_size = "sudo amixer -M set PCM " + str(new_settings['audio_size']) + "%" 
+    os.system(com_audio_size)
     return make_response('保存成功！'), 200
