@@ -4,8 +4,7 @@ from flask import g,request
 from models.data import Wendu,Shidu
 from models.data import *
 from flask_login import login_required
-from setting import CURRENT_SETTINGS
-from api.set import generate_settings
+from setting import CURRENT_SETTINGS, generate_settings, update_settings
 bp = Blueprint("watch", __name__)
 
 

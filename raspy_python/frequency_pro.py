@@ -22,10 +22,10 @@ import pyaudio
 import wave
 import os
 import array
-from api.set import generate_settings, update_settings
+from settings import generate_settings, update_settings
 
 pygame.mixer.init(frequency=16000,  channels=1)
-while true:
+while True:
     #com_audio_size = "sudo amixer -M set PCM " + str(settings['audio_size']) + "%" 
     #os.system(com_audio_size)
     #p = PyAudio()

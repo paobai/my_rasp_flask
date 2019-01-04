@@ -21,30 +21,9 @@ from models.data import Wendu,Shidu
 from models.data import *
 from flask_login import login_required
 import os
-from setting import CURRENT_SETTINGS
+from setting import CURRENT_SETTINGS, generate_settings, update_settings
 from test_use_c import generate_now_frequency, generate_wav
-
 bp = Blueprint("set", __name__)
-settings_path = CURRENT_SETTINGS.settings_path
-
-
-def generate_settings():
-    with open(settings_path, encoding='utf-8') as f:
-        return json.load(f)
-
-
-def update_settings(new_settings):
-    my_settings = generate_settings()
-    with open(settings_path, 'w', encoding='utf-8') as f:
-        for key, value in new_settings.items():
-            if 'grade' in key:
-                new_settings[key] = int(value)
-            elif 'radio' in key:
-                new_settings[key] = int(value)
-            elif 'size' in key:
-                new_settings[key] = int(value)
-        my_settings.update(new_settings)
-        f.write(json.dumps(my_settings))
 
 
 @bp.route("/set_grade_frequency_form", methods=['GET', 'POST'])

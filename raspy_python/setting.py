@@ -1,5 +1,5 @@
 import os
-
+import json
 class DefaultSettings(object):
     DEBUG = True
     UPLOAD_FOLDER = 'upload'
@@ -13,3 +13,23 @@ class DefaultSettings(object):
 
 
 CURRENT_SETTINGS = locals()['DefaultSettings']
+
+
+settings_path = CURRENT_SETTINGS.settings_path
+def generate_settings():
+    with open(settings_path, encoding='utf-8') as f:
+        return json.load(f)
+
+
+def update_settings(new_settings):
+    my_settings = generate_settings()
+    with open(settings_path, 'w', encoding='utf-8') as f:
+        for key, value in new_settings.items():
+            if 'grade' in key:
+                new_settings[key] = int(value)
+            elif 'radio' in key:
+                new_settings[key] = int(value)
+            elif 'size' in key:
+                new_settings[key] = int(value)
+        my_settings.update(new_settings)
+        f.write(json.dumps(my_settings))
