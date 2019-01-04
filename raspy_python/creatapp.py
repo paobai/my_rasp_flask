@@ -32,7 +32,7 @@ def init_login(app):
 
 def start_frequency():
     path = os.path.join(CURRENT_SETTINGS.root_path, 'frequency_pro.py')
-    com = 'python ' + path
+    com = 'python3 ' + path
     subprocess.Popen(com, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 
