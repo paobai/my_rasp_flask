@@ -63,7 +63,7 @@ def create_app(settings=None):
     create_bp(app)
     init_extensions(app)
     check_setting_json()
-    start_frequency()
+    #start_frequency()
 
     return app
 
