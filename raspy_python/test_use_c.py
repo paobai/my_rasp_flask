@@ -6,6 +6,8 @@ import pyaudio
 from pyaudio import PyAudio
 import array
 import math
+import dateutil.parser as date_parser
+import time
 
 def get_wendu_shidu():
     c_path = os.path.join(CURRENT_SETTINGS.root_path, "wenshidu_2")
@@ -25,13 +27,26 @@ def get_wendu_shidu():
     result.close()
     return wendu, shidu
 
-def generate_now_frequency(wendu):
+
+def fix_frequency(base_freqency,now_temp,base_temp,temp_ratio,now_hum,base_hum,hum_ratio):
+    print(base_freqency,now_temp,base_temp,temp_ratio,now_hum,base_hum,hum_ratio)
+    final_frequency = base_freqency*(1+ (now_temp - base_temp) * temp_ratio/100 + (now_hum - base_hum) * hum_ratio/100)
+    print(final_frequency,base_freqency)
+    return int(final_frequency)
+
+
+
+def generate_now_frequency(wendu,shidu):
     i = int(wendu/5) + 2
     grade = 'grade' + str(i)
     print(grade)
     settings = generate_settings()
-    now_frequency = settings[grade]
+    base_frequency = settings[grade]
+    base_temp = -2.5 + (i-1)*5
+
+    now_frequency = fix_frequency(base_freqency=base_frequency, now_temp=wendu, base_temp=base_temp,temp_ratio=settings['temp_ratio'], now_hum=shidu,base_hum=50,hum_ratio=settings['hum_ratio'])
     update_settings(dict(now_frequency = now_frequency))
+    
     return now_frequency
 
 def update_state(wendu, shidu):
@@ -62,7 +77,23 @@ def generate_wav(frequency):
     wf.setframerate(16000)
     wf.writeframes(b)
     wf.close()
+
+def check_time():
+    settings = generate_settings()
+    start_time = date_parser.parse(settings['start_time']).timestamp()
+    end_time = date_parser.parse(settings['end_time']).timestamp()
+    now_time = time.time()
+    print(start_time,end_time,now_time)
+    if now_time >start_time and now_time<end_time:
+        a=dict(open=True)
+        update_settings(a)
+    else:
+        a=dict(open=False)
+        update_settings(a)
+
+
 if __name__ =='__main__':
     wendu,shidu = get_wendu_shidu()
-    now_frequency = generate_now_frequency(wendu)
+    now_frequency = generate_now_frequency(wendu,shidu)
     generate_wav(now_frequency)
+    check_time()

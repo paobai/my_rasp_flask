@@ -27,7 +27,7 @@ def update_settings(new_settings):
         for key, value in new_settings.items():
             if 'grade' in key:
                 new_settings[key] = int(value)
-            elif 'radio' in key:
+            elif 'ratio' in key:
                 new_settings[key] = int(value)
             elif 'size' in key:
                 new_settings[key] = int(value)

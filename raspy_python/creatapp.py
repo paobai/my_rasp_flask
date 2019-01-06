@@ -8,7 +8,6 @@ from flask import send_from_directory
 import os
 from models.data import Wendu, User, AddParametersGroup
 import json
-import dateutil.parser as date_parser
 import subprocess
 
 
@@ -50,6 +49,7 @@ def check_setting_json():
         data['end_time'] = "20:00"
         data['audio_size'] = 50
         data['now_frequency'] = 1000
+        data['open'] = True
         f.write(json.dumps(data))
         f.close()
 

@@ -22,17 +22,21 @@ from models.data import *
 from flask_login import login_required
 import os
 from setting import CURRENT_SETTINGS, generate_settings, update_settings
-from test_use_c import generate_now_frequency, generate_wav
+from test_use_c import generate_now_frequency, generate_wav, check_time
 bp = Blueprint("set", __name__)
+
+def change_mav_by_set():
+    wendu = Wendu.query.order_by(Wendu.save_time.desc()).first()
+    shidu = Shidu.query.order_by(Shidu.save_time.desc()).first()
+    now_frequency = generate_now_frequency(int(wendu.data),int(shidu.data))
+    generate_wav(now_frequency)
 
 
 @bp.route("/set_grade_frequency_form", methods=['GET', 'POST'])
 def set_grade_frequency_form():
     new_settings = request.values.dicts[1].to_dict()
     update_settings(new_settings)
-    wendu = Wendu.query.order_by(Wendu.save_time.desc()).first()
-    now_frequency = generate_now_frequency(int(wendu.data))
-    generate_wav(now_frequency)
+    change_mav_by_set()
     return make_response('保存成功！'), 200
 
 
@@ -42,4 +46,6 @@ def set_other_parameters():
     update_settings(new_settings)
     com_audio_size = "sudo amixer -M set PCM " + str(new_settings['audio_size']) + "%" 
     os.system(com_audio_size)
+    change_mav_by_set()
+    check_time()
     return make_response('保存成功！'), 200
