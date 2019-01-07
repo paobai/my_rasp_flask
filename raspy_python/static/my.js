@@ -224,8 +224,13 @@ function update_farm_now_pig(){
   setInterval(function(){
     $("#farm_pig").attr("src","static/farm_now.jpg?"+ Math.random());
   },10000)
+  setInterval(function(){
+    $("#farm_gif").attr("src","static/final_gif.gif?"+ Math.random());
+  },10000)
+  
   // document.getElementById("farm_pig").src="/static/farm_now.jpg?" +  Math.random();
   $("#farm_pig").attr("src","static/farm_now.jpg?"+ Math.random());
+  $("#farm_gif").attr("src","static/farm_gif.gif?"+ Math.random());
 }
 
 //废弃了。采用下面update_main_index_load的方法。
