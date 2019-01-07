@@ -28,7 +28,7 @@ def main():
         images.append(Image.open( os.path.join(pic_path, i) ) )
 
     gif_path = os.path.join(root_path,"static","final_gif.gif")
-    im.save(gif_path, save_all=True, append_images=images,loop=1,duration=100,comment=b"aaabb")
+    im.save(gif_path, save_all=True, append_images=images,loop=0,duration=100,comment=b"aaabb")
  
 if __name__ == "__main__":
     main()

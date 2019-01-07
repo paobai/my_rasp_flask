@@ -63,7 +63,7 @@ def processImage(path,file_path):
                 new_frame.paste(last_frame)
             
             new_frame.paste(im, (0,0), im.convert('RGBA'))
-            path2 = os.path.join(file_path, '%s-%d.png' % (''.join(os.path.basename(path).split('.')[:-1]), i))
+            path2 = os.path.join(file_path, '1%s-%d.png' % (''.join(os.path.basename(path).split('.')[:-1]), i))
             new_frame.save(path2, 'PNG')
             # new_frame.save(path2, 'JPEG')
  
@@ -76,7 +76,7 @@ def processImage(path,file_path):
  
  
 def main():
-    git_path = os.path.join(CURRENT_SETTINGS.root_path,"gif_test","test_gif.gif")
+    git_path = os.path.join(CURRENT_SETTINGS.root_path,"gif_test","final_gif.gif")
     file_path = os.path.join(CURRENT_SETTINGS.root_path,"gif_test")
     processImage(git_path,file_path)
     
