@@ -61,8 +61,13 @@ while True:
         pygame.mixer.music.load(music_path)
         pygame.mixer.music.play(5)
         settings = generate_settings()
-        # if settings['open']:
-        #     time.sleep(5)
+        time.sleep(5)
+        for i in range(2):
+            settings = generate_settings()
+            if settings['open']:
+                time.sleep(5)
+            else:
+                pygame.mixer.music.stop()
         print(datetime.datetime.now())
     else:
         time.sleep(5)
