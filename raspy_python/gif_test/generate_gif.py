@@ -2,6 +2,7 @@
  
 import imageio
 from setting import CURRENT_SETTINGS
+from PIL import Image
 def create_gif(image_list, gif_name):
  
     frames = []
@@ -13,10 +14,16 @@ def create_gif(image_list, gif_name):
     return
  
 def main():
-    image_list = ['test_gif-0.png', 'test_gif-2.png', 'test_gif-4.png', 
+    image_list = ['test_gif-1.png', 'test_gif-2.png', 'test_gif-4.png', 
                   'test_gif-6.png', 'test_gif-8.png', 'test_gif-10.png']
-    gif_name = 'created_gif.gif'
-    create_gif(image_list, gif_name)
+    # gif_name = 'created_gif.gif'
+    # create_gif(image_list, gif_name)
+
+    im=Image.open("test_gif-0.png")
+    images=[]
+    for i in image_list:
+        images.append(Image.open(i))
+    im.save('ccgif.gif', save_all=True, append_images=images,loop=1,duration=100,comment=b"aaabb")
  
 if __name__ == "__main__":
     main()
