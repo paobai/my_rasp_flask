@@ -105,11 +105,12 @@ def load_templates_settings(file_name):
     return render_template(file_name, settings=settings)
 
 
-'''
+
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
+'''
 request.form.get("key", type=str, default=None) 获取表单数据
 
 request.args.get("key") 获取get请求参数
