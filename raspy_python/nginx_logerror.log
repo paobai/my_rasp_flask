@@ -1,0 +1,1 @@
+2019/03/03 22:06:08 [error] 29315#29315: *16 upstream prematurely closed connection while reading response header from upstream, client: 112.16.164.227, server: 139.180.137.223, request: "GET / HTTP/1.1", upstream: "uwsgi://127.0.0.1:5001", host: "139.180.137.223:5002"

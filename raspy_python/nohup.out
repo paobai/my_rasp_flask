@@ -1,0 +1,20 @@
+  File "creatapp.py", line 113
+SyntaxError: Non-ASCII character '\xe8' in file creatapp.py on line 114, but no encoding declared; see http://python.org/dev/peps/pep-0263/ for details
+ * Serving Flask app "creatapp" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://0.0.0.0:5001/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 275-983-029
+112.16.164.253 - - [09/Jan/2019 22:12:58] "GET /start HTTP/1.1" 200 -
+112.16.164.253 - - [09/Jan/2019 22:13:04] "GET /static/favicon.ico HTTP/1.1" 200 -
+112.16.164.253 - - [09/Jan/2019 22:13:05] "GET /start HTTP/1.1" 200 -
+112.16.164.253 - - [09/Jan/2019 22:13:07] "GET /templates/watch_text.html HTTP/1.1" 200 -
+112.16.164.253 - - [09/Jan/2019 22:13:07] "GET /watch/wendu/24hour?value=hour HTTP/1.1" 200 -
+112.16.164.253 - - [09/Jan/2019 22:13:07] "GET /watch/shidu/24hour?value=hour HTTP/1.1" 200 -
+112.16.164.253 - - [09/Jan/2019 22:13:07] "GET /watch/state_now HTTP/1.1" 200 -
+112.16.164.253 - - [09/Jan/2019 22:13:07] "GET /static/farm_now.jpg?0.774366511627973 HTTP/1.1" 200 -
+112.16.164.253 - - [09/Jan/2019 22:13:07] "GET /static/final_gif.gif?0.26152722259894046 HTTP/1.1" 200 -
