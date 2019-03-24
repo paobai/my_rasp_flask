@@ -44,15 +44,7 @@
       series: [{
           name: '时间',
           type: 'line',
-		  label: {
-			      normal: {
-			          show: true,
-			          position: 'top',
-			          textStyle: {
-			            color: 'white'
-			          }
-			      }
-			 },
+		  itemStyle : { normal: {label : {show: true}}},
           data: data_list
       }]};
       //return xmlhttp.responseText;
