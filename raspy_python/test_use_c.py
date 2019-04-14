@@ -8,8 +8,9 @@ import array
 import math
 import dateutil.parser as date_parser
 import time
+from sht20 import generate as generate_wendu_shidu
 
-def get_wendu_shidu():
+def get_wendu_shidu_old():
     c_path = os.path.join(CURRENT_SETTINGS.root_path, "wenshidu_2")
 
     result = os.popen(c_path)
@@ -27,6 +28,10 @@ def get_wendu_shidu():
     result.close()
     return wendu, shidu
 
+def get_wendu_shidu():
+    result = generate_wendu_shidu()
+    return result['temp'], result['humi']
+
 
 def fix_frequency(base_freqency,now_temp,base_temp,temp_ratio,now_hum,base_hum,hum_ratio):
     print(base_freqency,now_temp,base_temp,temp_ratio,now_hum,base_hum,hum_ratio)
@@ -36,7 +41,7 @@ def fix_frequency(base_freqency,now_temp,base_temp,temp_ratio,now_hum,base_hum,h
 
 
 
-def generate_now_frequency(wendu,shidu):
+def generate_now_frequency_old(wendu,shidu):
     i = int(wendu/5) + 2
     grade = 'grade' + str(i)
     print(grade)
@@ -45,6 +50,20 @@ def generate_now_frequency(wendu,shidu):
     base_temp = -2.5 + (i-1)*5
 
     now_frequency = fix_frequency(base_freqency=base_frequency, now_temp=wendu, base_temp=base_temp,temp_ratio=settings['temp_ratio'], now_hum=shidu,base_hum=50,hum_ratio=settings['hum_ratio'])
+    update_settings(dict(now_frequency = now_frequency))
+    
+    return now_frequency
+
+def generate_now_frequency(wendu,shidu):
+    i = int(wendu/5) + 2
+    grade = 'grade' + str(i)
+    print(grade)
+    settings = generate_settings()
+    base_frequency = settings[grade]
+    #base_temp = -2.5 + (i-1)*5
+
+    #now_frequency = fix_frequency(base_freqency=base_frequency, now_temp=wendu, base_temp=base_temp,temp_ratio=settings['temp_ratio'], now_hum=shidu,base_hum=50,hum_ratio=settings['hum_ratio'])
+    now_frequency = base_frequency
     update_settings(dict(now_frequency = now_frequency))
     
     return now_frequency
@@ -95,5 +114,6 @@ def check_time():
 if __name__ =='__main__':
     wendu,shidu = get_wendu_shidu()
     now_frequency = generate_now_frequency(wendu,shidu)
+    print(now_frequency,wendu,shidu)
     generate_wav(now_frequency)
     check_time()
