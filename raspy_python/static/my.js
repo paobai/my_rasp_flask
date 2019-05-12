@@ -223,7 +223,7 @@ function farm_state_now()
 
 function update_farm_now_pig(){
   setInterval(function(){
-    $("#farm_pig").attr("src","static/farm_now.jpg?"+ Math.random());
+    $("#farm_pig").attr("src","static/farm_now_5.jpg?"+ Math.random());
   },10000)
   setInterval(function(){
     $("#farm_gif").attr("src","static/final_gif.gif?"+ Math.random());
