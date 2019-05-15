@@ -38,16 +38,16 @@ def analys_export():
 
     writebook = xlwt.Workbook()
     sheet = writebook.add_sheet('result')  # 在打开的excel中添加一个sheet
-    sheet.write(0, 0, '补充参数名' + group.name)
+    sheet.write(0, 0, '参数名:')
     sheet.write(1, 0, group.name)
-    sheet.write(0, 1, '补充参数单位' + group.unit)
+    sheet.write(0, 1, '参数单位:')
     sheet.write(1, 1, group.unit)
-    sheet.write(0, 2, '补充参数备注' + group.description)
+    sheet.write(0, 2, '参数备注:')
     sheet.write(1, 2, group.description)
 
-    sheet.write(2, 0, '补充参数的值')
-    sheet.write(2, 1, '补充参数的记录时间')
-    line = 3
+    sheet.write(3, 0, '参数的值:')
+    sheet.write(3, 1, '参数的记录时间:')
+    line = 4
     for col in res:
         sheet.write(line, 0, col.value)
         sheet.write(line, 1, str(col.save_time))
