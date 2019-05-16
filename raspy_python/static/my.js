@@ -230,7 +230,7 @@ function update_farm_now_pig(){
   },600000)
   
   // document.getElementById("farm_pig").src="/static/farm_now.jpg?" +  Math.random();
-  $("#farm_pig").attr("src","static/farm_now.jpg?"+ Math.random());
+  $("#farm_pig").attr("src","static/farm_now_5.jpg?"+ Math.random());
   $("#farm_gif").attr("src","static/final_gif.gif?"+ Math.random());
 }
 
